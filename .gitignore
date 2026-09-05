@@ -1,0 +1,39 @@
+# Duze obiekty danych - odtwarzalne skryptami 00-02 w okolo 2 minuty
+*.h5ad
+*.pse
+*.ncf
+
+# Surowe dane GEO (3,1 GB) - pobierz z GSE165371
+raw/
+
+# Cudze repozytorium (MacoskoLab/cerebellum-atlas-analysis) - ma wlasny .git
+cerebellum-atlas-analysis/
+
+# Dowiazania do zasobow spoza projektu
+artykuly
+artykuły
+drivelab
+
+# Pusty placeholder
+references/Data_File_S1.xlsx
+
+# Pliki posrednie LaTeX
+raport/*.aux
+raport/*.log
+raport/*.out
+raport/*.toc
+raport/*.fls
+raport/*.fdb_latexmk
+raport/*.bcf
+raport/*.run.xml
+raport/*.bbl
+raport/*.blg
+raport/*.synctex.gz
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Duze tabele posrednie
+processed/markers_lokalizacja.csv

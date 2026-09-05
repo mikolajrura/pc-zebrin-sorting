@@ -1,0 +1,1 @@
+/home/mikolajrurad/.config/bash/modules/genometools.sh
