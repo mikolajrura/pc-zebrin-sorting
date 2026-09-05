@@ -225,8 +225,82 @@ obszar. Sprawdzono dopasowanie tego fragmentu do białek myszy:
 i 71,8 procent z EBF3.
 
 Ten fragment nie ma własnej struktury przestrzennej. Spośród 138 reszt
-\textbf{żadna} nie osiąga progu wiarygodności modelu. To dobrze dla przeciwciała:
-fragment sterczy na zewnątrz i jest dostępny bez dodatkowej obróbki próbki.
+\textbf{żadna} nie osiąga progu wiarygodności modelu.
+
+\section{Dlaczego bezkształtny fragment w ogóle działa jako epitop}
+
+Na rycinie 3.1 pomarańczowy odcinek wygląda jak splątana nitka, w odróżnieniu
+od zwartych domen. Nasuwa się pytanie, jak przeciwciało może rozpoznawać coś,
+co nie ma ustalonego kształtu. Odpowiedź jest taka, że przeciwciało rozpoznaje
+\textbf{sekwencję aminokwasów, a nie kształt}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+ & Epitop przestrzenny & \textbf{Epitop liniowy} \\
+\midrule
+Co go tworzy & reszty z odległych & ciągły odcinek sekwencji, \\
+             & części łańcucha & zwykle 5 do 8 aminokwasów \\
+Wymaga struktury & tak & \textbf{nie} \\
+Gdzie w EBF2 & domeny niebieska i zielona & \textbf{koniec C, kolor pomarańczowy} \\
+\bottomrule
+\end{tabular}
+\caption{Dwa rodzaje epitopów.}
+\end{table}
+
+Istotne jest to, jak powstają przeciwciała tego typu. Królika immunizuje się
+\textbf{samym fragmentem} białka, wytworzonym w bakterii, a nie całym białkiem
+w postaci naturalnej. Dla \texttt{HPA003954} tym fragmentem było 138 aminokwasów,
+reszty 412 do 550. Taki kawałek nie ma żadnej struktury, więc układ odpornościowy
+królika widział go jako rozciągnięty peptyd i odpowiedział na epitopy liniowe.
+Przy 138 aminokwasach mieści się tam około 23 niezależnych epitopów, a przeciwciało
+wielorodne jest mieszaniną klonów rozpoznających różne z nich.
+
+Skład aminokwasowy potwierdza, że mamy do czynienia z typowym regionem
+nieuporządkowanym:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Obszar & Aminokwasy sprzyjające & Aminokwasy budujące \\
+       & nieuporządkowaniu      & zwarty rdzeń \\
+\midrule
+Epitop, reszty 413 do 550 & \textbf{74,6 \%} & 31,9 \% \\
+Domena wiążąca DNA & 63,5 \% & \textbf{42,2 \%} \\
+\bottomrule
+\end{tabular}
+\caption{W epitopie najczęstsze są seryna (27 \%), glicyna (12 \%) i prolina (10 \%).
+Prolina łamie helisy i kartki, glicyna daje nadmiar swobody, seryna jest mała
+i polarna. Takiej sekwencji nie da się zwinąć w zwartą domenę.}
+\end{table}
+
+Rdzeń rozpoznawany przez \texttt{HPA055101} wygląda następująco:
+
+\begin{center}
+\texttt{PGFLNGSPTGSPYGIMSSSPTVGSSSTSSILPF}
+\end{center}
+
+Z tego wynikają trzy rzeczy istotne dla barwienia:
+
+\begin{enumerate}
+    \item \textbf{Dostępność.} W zwiniętej domenie większość reszt jest schowana
+    w rdzeniu i przeciwciało ich nie dosięga. Rozciągnięty łańcuch wystaje na
+    zewnątrz w całości.
+    \item \textbf{Odporność na warunki.} Epitop liniowy działa tak samo w białku
+    naturalnym i po jego rozwinięciu. Bufor z 1 \% Tritonu bez utrwalania mu nie
+    zaszkodzi, bo nie ma czego rozwijać.
+    \item \textbf{Koszt.} Unieruchomienie rozciągniętego peptydu w rowku
+    przeciwciała kosztuje entropię, więc powinowactwo bywa niższe niż przy
+    epitopie o gotowym kształcie. Nadrabia to wielorodność przeciwciała, bo wiele
+    klonów siada na różne miejsca tego samego odcinka.
+\end{enumerate}
+
+To domyka rozumowanie z poprzedniej sekcji. Gdyby epitop leżał w zwartej domenie,
+byłby w 95,5 \% identyczny z EBF1 i przeciwciało nie odróżniłoby obu białek.
+Właśnie dlatego, że leży w bezkształtnym końcu, gdzie sekwencje obu białek
+rozeszły się do 62 \%, można nim mierzyć akurat EBF2.
 
 \section{Czego można się spodziewać na cytometrze}
 
