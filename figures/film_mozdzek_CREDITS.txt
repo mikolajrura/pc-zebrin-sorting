@@ -1,4 +1,4 @@
-Mouse cerebellar Purkinje layer — phenotype composition by lobule
+Mouse cerebellar Purkinje layer: phenotype composition by lobule
 =================================================================
 
 what you see:
@@ -12,8 +12,8 @@ geometry:     2,279,886 voxels at 10 µm, computed as the boundary between
 phenotypes:   16,634 Purkinje cells, 9 subtypes, 16 lobules.
 
 made with:    python (numpy, pillow) + ffmpeg.
-              1920x1080, 60 fps, 40 s. Custom software rasterizer — no GPU,
-              no game engine.
+              1920x1080, 60 fps, 40 s. Custom software rasterizer,
+              no GPU and no game engine.
 
 
 data I used:

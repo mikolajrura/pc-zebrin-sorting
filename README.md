@@ -4,9 +4,9 @@ Analysis of mouse cerebellum snRNA-seq data, looking for a **nuclear** marker
 that can separate Purkinje cells into Aldoc-positive and Aldoc-negative
 populations on a flow sorter.
 
-**Main result:** `Ebf2` discriminates the two groups (AUC 0.932), is a
-DNA-binding transcription factor — so it survives nuclei isolation in 1% Triton
-without fixation — and is practically absent from every other cerebellar cell
+**Main result:** `Ebf2` discriminates the two groups (AUC 0.932). It is a
+DNA-binding transcription factor, so it survives nuclei isolation in 1% Triton
+without fixation, and it is practically absent from every other cerebellar cell
 type.
 
 Full write-up in [`raport/main.pdf`](raport/main.pdf) (in Polish).
@@ -15,7 +15,7 @@ Full write-up in [`raport/main.pdf`](raport/main.pdf) (in Polish).
 
 ## The Purkinje layer in 3D
 
-![Mouse Purkinje layer — phenotype composition by lobule](figures/film_mozdzek.gif)
+![Mouse Purkinje layer: phenotype composition by lobule](figures/film_mozdzek.gif)
 
 **what you see:**
 The Purkinje cell layer of the mouse cerebellum in 3D, rotating 180°. Each lobule
@@ -111,13 +111,13 @@ processed/   result tables (CSV, JSON)
 | `44_audyt_ebf2.py` | four independent attempts to falsify the EBF2 claim |
 | `45_fig_epitop_czarne.pml` | structural figure for the report |
 | `49_abc_ebf2.py` | Ebf2 across 16,626 Purkinje cells from ABC Atlas MERFISH, in CCFv3 coordinates |
-| `50_abc_ebf2_pasy.py` | tests whether Ebf2-high cells form parasagittal stripes — with a positive control |
+| `50_abc_ebf2_pasy.py` | tests whether Ebf2-high cells form parasagittal stripes, with a positive control |
 | `51_fig_abc_ebf2.py` | four-panel figure summarising the spatial result |
 | `58_film_mozdzek.py` | the 3D render above |
 
 ## Is Ebf2 a stripe marker?
 
-No — and the test says so with a positive control in place.
+No, and the test says so with a positive control in place.
 
 Across 16 lobules, the fraction of Ebf2-positive cells falls as the Aldoc+
 fraction rises (Pearson −0.518, p = 0.040), so `Ebf2` tracks the **lobular**
