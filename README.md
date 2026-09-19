@@ -11,6 +11,41 @@ móżdżku.
 
 Pełny opis w [`raport/main.pdf`](raport/main.pdf).
 
+---
+
+## Warstwa Purkinjego w 3D
+
+![Warstwa Purkinjego myszy — skład fenotypowy płacików](figures/film_mozdzek.gif)
+
+Warstwa komórek Purkinjego całego móżdżku myszy, obracana wokół osi pionowej.
+Każdy płacik zapala się po kolei, pokolorowany podtypami Purkinjego, które
+zawiera; panel po prawej podaje jego skład.
+
+| | |
+|---|---|
+| geometria | **2 279 886 wokseli** przy 10 µm |
+| fenotypy | **16 634 komórki**, 9 podtypów, 16 płacików |
+| render | 1920×1080, 60 kl./s, 40 s |
+
+Warstwy Purkinjego nie ma w wydanym wolumenie adnotacji CCFv3a — wszystkie 19
+struktur `*pu` mają zero wokseli, podczas gdy `*gr` i `*mo` mają miliony.
+Jest więc wyliczona geometrycznie, jako granica warstwy ziarnistej i drobinowej,
+bo tam z definicji leżą ciała tych komórek.
+
+- pełny film, 40 s: [`figures/film_mozdzek_web.mp4`](figures/film_mozdzek_web.mp4)
+- model interaktywny (Three.js): [`figures/purkinje3d_v1.html`](figures/purkinje3d_v1.html)
+- atrybucja i DOI: [`figures/film_mozdzek_CREDITS.txt`](figures/film_mozdzek_CREDITS.txt)
+
+Zrobione w Pythonie (NumPy, Pillow) i `ffmpeg` — własny rasteryzer programowy,
+bez GPU i bez silnika graficznego. Skrypt: [`scripts/58_film_mozdzek.py`](scripts/58_film_mozdzek.py).
+
+**Źródła danych**
+Kozareva V. i wsp. *Nature* 2021; 598:214–219 · [10.1038/s41586-021-03220-z](https://doi.org/10.1038/s41586-021-03220-z) · GEO [GSE165371](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165371)
+Piluso S. i wsp. *Imaging Neuroscience* 2025; 3:imag_a_00565 · [10.1162/imag_a_00565](https://doi.org/10.1162/imag_a_00565) · Zenodo [10.5281/zenodo.15176439](https://doi.org/10.5281/zenodo.15176439) · CC BY 4.0
+Oparte na Allen Mouse Brain Common Coordinate Framework (CCFv3), Allen Institute for Brain Science.
+
+---
+
 ## Dane wejściowe
 
 | co | skąd |
