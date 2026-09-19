@@ -1,42 +1,35 @@
 Mouse cerebellar Purkinje layer — phenotype composition by lobule
 =================================================================
 
-What you see:  The Purkinje cell layer of the mouse cerebellum in 3D,
-               rotating 180°. Each lobule lights up in turn, colored by
-               the Purkinje subtypes it contains. The panel lists that
-               lobule's composition.
+what you see:
+The Purkinje cell layer of the mouse cerebellum in 3D, rotating 180°. Each
+lobule lights up in turn, colored by the Purkinje subtypes it contains. The
+panel lists that lobule's composition.
 
-Geometry:      2,279,886 voxels at 10 µm, computed as the boundary
-               between the granular and molecular layers (the released
-               CCFv3a annotation volume contains no Purkinje-layer voxels,
-               so the layer is derived geometrically).
-Phenotypes:    16,634 Purkinje cells, 9 subtypes, 16 lobules.
+geometry:     2,279,886 voxels at 10 µm, computed as the boundary between
+              granular and molecular layers.
 
-Made with:     Python (NumPy, Pillow) + ffmpeg. 1920×1080, 60 fps, 40 s.
-               Custom software rasterizer — no GPU, no game engine.
+phenotypes:   16,634 Purkinje cells, 9 subtypes, 16 lobules.
 
-Data
-----
-Kozareva V, Martin C, Osorno T, Rudolph S, Guo C, Vanderburg C, Nadaf N,
-Regev A, Regehr WG, Macosko E. A transcriptomic atlas of mouse cerebellar
-cortex comprehensively defines cell types. Nature 2021; 598(7879):214–219.
-doi:10.1038/s41586-021-03220-z   ·   GEO: GSE165371
+made with:    python (numpy, pillow) + ffmpeg.
+              1920x1080, 60 fps, 40 s. Custom software rasterizer — no GPU,
+              no game engine.
 
-Piluso S, Verasztó C, Carey H, Delattre É, L'Yvonnet T, Colnot É,
-Romani A, Bjaalie JG, Markram H, Keller D. An extended and improved CCFv3
-annotation and Nissl atlas of the entire mouse brain. Imaging Neuroscience
-2025; 3:imag_a_00565.  doi:10.1162/imag_a_00565
-Zenodo: 10.5281/zenodo.15176439   ·   licence: CC BY 4.0
-Built on the Allen Mouse Brain Common Coordinate Framework (CCFv3),
-Allen Institute for Brain Science.
 
-Short form
-----------
-Made with:   Python (NumPy, Pillow) + ffmpeg
-Data:        Kozareva et al. 2021, Nature — cerebellar cell type atlas
-             CCFv3a (Piluso et al. 2025), built on Allen Mouse Brain CCFv3
+data I used:
 
-Reproduce
----------
+Kozareva V, Martin C, Osorno T, et al. A transcriptomic atlas of mouse cerebellar
+cortex comprehensively defines cell types. Nature 2021;598:214–219.
+doi:10.1038/s41586-021-03220-z · GEO: GSE165371
+
+Piluso S, Verasztó C, Carey H, et al. An extended and improved CCFv3 annotation
+and Nissl atlas of the entire mouse brain. Imaging Neuroscience 2025;
+3:imag_a_00565. doi:10.1162/imag_a_00565
+Zenodo: 10.5281/zenodo.15176439 · CC BY 4.0
+
+Built on the Allen Mouse Brain Common Coordinate Framework (CCFv3).
+
+
+reproduce:
 scripts/58_film_mozdzek.py   (--test for 3 control frames, --wznow to resume)
 inputs: /mnt/data1t/pc_rebuild/scene_pc_layer.npz, web_cloud.json
