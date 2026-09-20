@@ -1,18 +1,3 @@
-# pc-zebrin-sorting
-
-Analysis of mouse cerebellum snRNA-seq data, looking for a **nuclear** marker
-that can separate Purkinje cells into Aldoc-positive and Aldoc-negative
-populations on a flow sorter.
-
-**Main result:** `Ebf2` discriminates the two groups (AUC 0.932). It is a
-DNA-binding transcription factor, so it survives nuclei isolation in 1% Triton
-without fixation, and it is practically absent from every other cerebellar cell
-type.
-
-Full write-up in [`raport/main.pdf`](raport/main.pdf) (in Polish).
-
----
-
 ## The Purkinje layer in 3D
 
 ![Mouse Purkinje layer: phenotype composition by lobule](figures/film_mozdzek.gif)
@@ -42,6 +27,21 @@ and Nissl atlas of the entire mouse brain. *Imaging Neuroscience* 2025;
 Zenodo: [10.5281/zenodo.15176439](https://doi.org/10.5281/zenodo.15176439) · CC BY 4.0
 
 Built on the Allen Mouse Brain Common Coordinate Framework (CCFv3).
+
+---
+
+# pc-zebrin-sorting
+
+Analysis of mouse cerebellum snRNA-seq data, looking for a **nuclear** marker
+that can separate Purkinje cells into Aldoc-positive and Aldoc-negative
+populations on a flow sorter.
+
+**Main result:** `Ebf2` discriminates the two groups (AUC 0.932). It is a
+DNA-binding transcription factor, so it survives nuclei isolation in 1% Triton
+without fixation, and it is practically absent from every other cerebellar cell
+type.
+
+Full write-up in [`raport/main.pdf`](raport/main.pdf) (in Polish).
 
 ---
 
