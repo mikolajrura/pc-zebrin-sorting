@@ -41,3 +41,5 @@ processed/markers_lokalizacja.csv
 # Pelne rendery wideo (odtwarzalne skryptem 58) - do repo idzie lekka wersja + GIF
 figures/film_mozdzek.mp4
 figures/film_mozdzek_180.mp4
+figures/film_mozdzek_360.mp4
+figures/film_mozdzek_360_tlo.mp4

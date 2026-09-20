@@ -176,18 +176,26 @@ def panel(img, m, fnt, waga):
     return img
 
 
-def klatka(P, lob, sub, names, meta, t, n_klatek, fnt, per):
-    """t = numer klatki. `per` = klatek na płacik."""
+def klatka(P, lob, sub, names, meta, t, n_klatek, fnt, per, stopnie=180, petla=False, tlo=False):
+    """t = numer klatki. `per` = klatek na płacik.
+
+    stopnie -- zakres obrotu kamery w osi Y (180 = dotychczasowe zachowanie).
+    tlo     -- sama scena 3D, bez panelu i bez podpisu (wersja pod tlo strony).
+    petla   -- domyka animacje: post liczony przez n zamiast n-1, a oba kolysania
+               kamery dostaja calkowita liczbe cykli, wiec klatka ostatnia laczy
+               sie z pierwsza bez skoku.
+    """
     idx = min(int(t // per), 15)
     faza = (t % per) / per
     waga = float(np.clip(faza / 0.18, 0, 1))          # wejście podświetlenia
     if faza > 0.88:                                   # wyjście
         waga = float(np.clip((1 - faza) / 0.12, 0, 1))
 
-    post = t / max(1, n_klatek - 1)
-    kat_y = -70 + 180 * post                          # 180° przez całość
-    elew = 16 + 17 * np.sin(2 * np.pi * post * 1.25)  # kamera w górę/dół
-    przesuw = 70 * np.sin(2 * np.pi * post * 0.7)     # i w bok
+    post = t / n_klatek if petla else t / max(1, n_klatek - 1)
+    kat_y = -70 + stopnie * post                      # zakres obrotu
+    f_elew, f_przes = (1.0, 1.0) if petla else (1.25, 0.7)
+    elew = 16 + 17 * np.sin(2 * np.pi * post * f_elew)   # kamera w górę/dół
+    przesuw = 70 * np.sin(2 * np.pi * post * f_przes)    # i w bok
 
     nazwa = names[idx]
     m = next(v for v in meta.values() if v["name"] == nazwa)
@@ -195,6 +203,8 @@ def klatka(P, lob, sub, names, meta, t, n_klatek, fnt, per):
     buf = render3d(P, lob, sub, idx, waga, kat_y, elew, przesuw)
     img = Image.new("RGB", (W, H), BG)
     img.paste(Image.fromarray(buf), (0, 0))
+    if tlo:                                   # sama scena, nic na wierzchu
+        return img
     panel(img, m, fnt, waga)
 
     d = ImageDraw.Draw(img)
@@ -208,11 +218,20 @@ def main():
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--points", type=int, default=650_000)
     ap.add_argument("--test", action="store_true")
+    ap.add_argument("--stopnie", type=int, default=180,
+                    help="zakres obrotu w osi Y; 360 = pelny obrot")
+    ap.add_argument("--petla", action="store_true",
+                    help="domknij animacje (calkowite cykle kolysania, bez skoku na zapetleniu)")
+    ap.add_argument("--tlo", action="store_true",
+                    help="sama scena 3D, bez panelu i podpisu (wersja pod tlo strony)")
+    ap.add_argument("--work", type=Path, default=None, help="katalog na klatki")
+    ap.add_argument("--out", type=Path, default=None, help="plik wyjsciowy mp4")
     ap.add_argument("--wznow", action="store_true",
                     help="pomiń klatki, które już są na dysku")
     a = ap.parse_args()
 
-    WORK.mkdir(parents=True, exist_ok=True)
+    work = a.work or WORK
+    work.mkdir(parents=True, exist_ok=True)
     FIG.mkdir(exist_ok=True)
     meta = json.load(open(META))["meta"]
     P, lob, sub, names = wczytaj(a.points)
@@ -222,26 +241,26 @@ def main():
         per = a.frames / 16
         for n, t in enumerate([5, int(a.frames * 0.42), a.frames - 8]):
             klatka(P, lob, sub, names, meta, t, a.frames, fnt, per).save(
-                WORK / f"test_{n}.png")
+                work / f"test_{n}.png")
             print(f"  test_{n}.png  (klatka {t})")
         return
 
     per = a.frames / 16
     pominiete = 0
     for t in range(a.frames):
-        cel = WORK / f"f_{t:05d}.png"
+        cel = work / f"f_{t:05d}.png"
         if a.wznow and cel.exists() and cel.stat().st_size > 50_000:
             pominiete += 1
             continue
-        klatka(P, lob, sub, names, meta, t, a.frames, fnt, per).save(cel)
+        klatka(P, lob, sub, names, meta, t, a.frames, fnt, per, a.stopnie, a.petla, a.tlo).save(cel)
         if t % 50 == 0:
             print(f"  {t}/{a.frames}", flush=True)
     if pominiete:
         print(f"  pominięto {pominiete} gotowych klatek")
 
-    out = FIG / "film_mozdzek.mp4"
+    out = a.out or (FIG / "film_mozdzek.mp4")
     subprocess.run([
-        "ffmpeg", "-y", "-framerate", str(a.fps), "-i", str(WORK / "f_%05d.png"),
+        "ffmpeg", "-y", "-framerate", str(a.fps), "-i", str(work / "f_%05d.png"),
         "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "17",
         "-preset", "slow", str(out)], check=True,
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
